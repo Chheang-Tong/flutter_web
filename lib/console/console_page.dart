@@ -5,7 +5,8 @@ import 'package:testing_w/console/tablet_console.dart';
 import 'package:testing_w/core/res/responsive.dart';
 
 class ConsolePage extends StatelessWidget {
-  const ConsolePage({super.key});
+  final String? section;
+  const ConsolePage({super.key, required this.section});
 
   @override
   Widget build(BuildContext context) {

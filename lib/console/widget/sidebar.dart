@@ -2,9 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:testing_w/change/colors.dart';
+import 'package:testing_w/core/providers/route_provider.dart';
+import 'package:testing_w/feature/page/string_page.dart';
 
 class Sidebar extends StatefulWidget {
   final Function(String) onSelectPage;
@@ -76,32 +80,47 @@ class _SidebarState extends State<Sidebar> {
                 SidebarItem(
                   title: 'Dashboard',
                   iconPath: 'asset/icon/home.svg',
-                  isSelected: widget.selectedPage == 'dashboard',
-                  onTap: () => widget.onSelectPage('dashboard'),
+                  isSelected: widget.selectedPage == StringPage.dashboard,
+                  onTap: () {
+                    widget.onSelectPage(StringPage.dashboard);
+                    _GoRouter((StringPage.dashboardRoute));
+                  },
                 ),
                 SidebarItem(
-                  title: 'Order',
+                  title: 'Orders',
                   iconPath: 'asset/icon/cart.svg',
-                  isSelected: widget.selectedPage == 'order',
-                  onTap: () => widget.onSelectPage('order'),
+                  isSelected: widget.selectedPage == StringPage.orders,
+                  onTap: () {
+                    widget.onSelectPage(StringPage.orders);
+                    _GoRouter((StringPage.ordersRoute));
+                  },
                 ),
                 SidebarItem(
                   title: 'Analytics',
                   iconPath: 'asset/icon/chart.svg',
-                  isSelected: widget.selectedPage == 'analytics',
-                  onTap: () => widget.onSelectPage('analytics'),
+                  isSelected: widget.selectedPage == StringPage.analytics,
+                  onTap: () {
+                    widget.onSelectPage(StringPage.analytics);
+                    _GoRouter((StringPage.analyticsRoute));
+                  },
                 ),
                 SidebarItem(
                   title: 'Customer',
                   iconPath: 'asset/icon/customer.svg',
-                  isSelected: widget.selectedPage == 'customer',
-                  onTap: () => widget.onSelectPage('customer'),
+                  isSelected: widget.selectedPage == StringPage.customer,
+                  onTap: () {
+                    widget.onSelectPage(StringPage.customer);
+                    _GoRouter((StringPage.customerRoute));
+                  },
                 ),
                 SidebarItem(
                   title: 'Menu',
                   iconPath: 'asset/icon/menu.svg',
-                  isSelected: widget.selectedPage == 'menu',
-                  onTap: () => widget.onSelectPage('menu'),
+                  isSelected: widget.selectedPage == StringPage.menu,
+                  onTap: () {
+                    widget.onSelectPage(StringPage.menu);
+                    _GoRouter((StringPage.menuRoute));
+                  },
                 ),
                 Expanded(child: SizedBox()),
                 Padding(
@@ -191,6 +210,14 @@ class _SidebarState extends State<Sidebar> {
         ],
       ),
     );
+  }
+
+  void _GoRouter(String route) {
+    GoRouter.of(context).go(route);
+    Provider.of<RouteProvider>(
+      context,
+      listen: false,
+    ).saveRouteToLocalStorage(route);
   }
 }
 

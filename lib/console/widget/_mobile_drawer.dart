@@ -2,9 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:testing_w/change/colors.dart';
+import 'package:testing_w/core/providers/route_provider.dart';
+import 'package:testing_w/feature/page/string_page.dart';
 
 class MobileDrawer extends StatefulWidget {
   final Function selectedPage;
@@ -65,7 +69,8 @@ class _MobileDrawerState extends State<MobileDrawer> {
             title: 'Dashboard',
             icon: 'asset/icon/home.svg',
             onTap: () {
-              widget.selectedPage('dashboard');
+              widget.selectedPage(StringPage.dashboard);
+              _GoRouter(StringPage.dashboardRoute);
               Navigator.pop(context);
             },
           ),
@@ -74,7 +79,8 @@ class _MobileDrawerState extends State<MobileDrawer> {
             icon: 'asset/icon/cart.svg',
 
             onTap: () {
-              widget.selectedPage('order');
+              widget.selectedPage(StringPage.orders);
+              _GoRouter(StringPage.ordersRoute);
               Navigator.pop(context);
             },
           ),
@@ -83,7 +89,8 @@ class _MobileDrawerState extends State<MobileDrawer> {
             icon: 'asset/icon/chart.svg',
 
             onTap: () {
-              widget.selectedPage('analytics');
+              widget.selectedPage(StringPage.analytics);
+              _GoRouter(StringPage.analyticsRoute);
               Navigator.pop(context);
             },
           ),
@@ -92,7 +99,8 @@ class _MobileDrawerState extends State<MobileDrawer> {
             icon: 'asset/icon/customer.svg',
 
             onTap: () {
-              widget.selectedPage('customer');
+              widget.selectedPage(StringPage.customer);
+              _GoRouter(StringPage.customerRoute);
               Navigator.pop(context);
             },
           ),
@@ -101,7 +109,8 @@ class _MobileDrawerState extends State<MobileDrawer> {
             icon: 'asset/icon/menu.svg',
 
             onTap: () {
-              widget.selectedPage('menu');
+              widget.selectedPage(StringPage.menu);
+              _GoRouter(StringPage.menuRoute);
               Navigator.pop(context);
             },
           ),
@@ -188,6 +197,14 @@ class _MobileDrawerState extends State<MobileDrawer> {
         ],
       ),
     );
+  }
+
+  void _GoRouter(String route) {
+    GoRouter.of(context).go(route);
+    Provider.of<RouteProvider>(
+      context,
+      listen: false,
+    ).saveRouteToLocalStorage(route);
   }
 }
 
