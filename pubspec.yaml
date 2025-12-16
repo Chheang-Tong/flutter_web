@@ -53,4 +53,6 @@ flutter:
   #         weight: 700
 scripts:
   up: flutter pub upgrade && flutter pub upgrade --major-versions
+  web: flutter build web --release
   git: git add . && git commit -m "Done Code for dashboard and ordering " && git push
+  run_with_py: cd build/web && python3 -m http.server 8080
