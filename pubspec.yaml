@@ -53,3 +53,4 @@ flutter:
   #         weight: 700
 scripts:
   up: flutter pub upgrade && flutter pub upgrade --major-versions
+  git: git add . && git commit -m "Done Code for dashboard and ordering " && git push
