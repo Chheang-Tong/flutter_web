@@ -105,8 +105,8 @@ class OrderDataSource extends DataGridSource {
               : e.columnName == "Payment" || e.columnName == "Status"
               ? Container(
                   padding: EdgeInsets.symmetric(
-                    vertical: Responsive.isDesktop(context) ? 10 : 4,
-                    horizontal: Responsive.isDesktop(context)&& e.value == "Completed" ? 20 : 2,
+                    vertical: Responsive.isDesktop(context) ? 10 : 2,
+                    horizontal: Responsive.isDesktop(context) ? 10 : 2,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
